@@ -58,11 +58,11 @@ def state1(update: Update, context: CallbackContext) -> int:
     return STATE0
 
 def state2(update: Update, context: CallbackContext) -> int:
-    update.message.reply_text(f"You've chosen {update.message.text}. I now return you STATE0")
+    update.message.reply_text(f"You've just said: {update.message.text}. I now return you STATE0")
     return STATE0
 
 def state3(update: Update, context: CallbackContext) -> int:
-    update.message.reply_text(f"You've chosen {update.message.text}. I now return you STATE0")
+    update.message.reply_text(f"You've just said: {update.message.text}. I now return you STATE0")
     return STATE0
 
 def cancel(update: Update, context: CallbackContext):
