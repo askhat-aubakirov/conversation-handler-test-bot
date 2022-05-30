@@ -44,17 +44,17 @@ def start(update: Update, context: CallbackContext) -> int:
 
 def choosing_state(update: Update, context: CallbackContext) -> int:
     if update.message.text.lower() in ["state 1"]:
-        update.message.reply_text("this is state 1")
+        update.message.reply_text("this is state 1 \nsay anything to get to state 0")
         return STATE1
     elif update.message.text.lower() in ["state 2"]:
-        update.message.reply_text("this is state 2")
+        update.message.reply_text("this is state 2 \nsay anything to get to state 0")
         return STATE2
     elif update.message.text.lower() in ["state 3"]:
-        update.message.reply_text("this is state 3")
+        update.message.reply_text("this is state 3 \nsay anything to get to state 0")
         return STATE3
 
 def state1(update: Update, context: CallbackContext) -> int:
-    update.message.reply_text(f"You've chosen {update.message.text}. I now return you STATE0")
+    update.message.reply_text(f"You've just said: {update.message.text}. I now return you STATE0")
     return STATE0
 
 def state2(update: Update, context: CallbackContext) -> int:
@@ -75,9 +75,9 @@ handler = ConversationHandler(
     entry_points=[CommandHandler("start", start)],
     states={
         STATE0: [MessageHandler(Filters.regex(choice_regex), choosing_state)],
-        STATE1: [MessageHandler(Filters.regex(choice_regex), state1)],
-        STATE2: [MessageHandler(Filters.regex(choice_regex), state2)],
-        STATE3: [MessageHandler(Filters.regex(choice_regex), state3)],
+        STATE1: [MessageHandler(Filters.text, state1)],
+        STATE2: [MessageHandler(Filters.text, state2)],
+        STATE3: [MessageHandler(Filters.text, state3)],
     },
     fallbacks= [CommandHandler("cancel", cancel)],
 )
